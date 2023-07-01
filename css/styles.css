@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
+
+/* General CSS */
+:root {
+    --header-background-color: #3b5998;
+    --card-bg: #f0f0f0;
+    --bg-color: #d3d3d3;
+    --white: #fff;
+    --rainbow1: #f00;
+    --rainbow2: #ff0;
+    --rainbow3: #0f0;
+    --rainbow4: #0ff;
+    --rainbow5: #00f;
+    --rainbow6: #f0f;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-color);
+    font-family: 'Sigma';
+}
+
+.header, .footer {
+    background-color: var(--header-background-color);
+    color: var(--white);
+    padding: 1.5em;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Header CSS */
+header {
+    top: 0;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+    letter-spacing: 2px;
+    animation: rainbow 6s linear infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        color: var(--rainbow1);
+    }
+    16.66% {
+        color: var(--rainbow2);
+    }
+    33.33% {
+        color: var(--rainbow3);
+    }
+    50% {
+        color: var(--rainbow4);
+    }
+    66.66% {
+        color: var(--rainbow5);
+    }
+    83.33% {
+        color: var(--rainbow6);
+    }
+    100% {
+        color: var(--rainbow1);
+    }
+}
+
+/* Main Contant */
+main {
+    margin-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+}
+
+.card {
+    display: grid;
+    border-radius: 1rem;
+    overflow: hidden;
+    
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 2em;
+    margin: 1.5em;
+    border-radius: 1em;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    flex-basis: 30%;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card > * {
+    grid-area: 1/1;
+    transition: .4s;
+}
+
+.card:hover {
+    animation: shake 1s linear infinite,
+                pulse 2s linear infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-5px, 0);
+    }
+    50% {
+        transform: translate(0, 0);
+    }
+    75% {
+        transform: translate(5px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease-in-out;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+span {
+    display: grid;
+    align-items: center;
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: var(--white);
+    padding: 0.75rem;
+    background: var(--c,#0009);
+    clip-path: inset(0 var(--_i,100%) 0 0);
+    
+    -webkit-mask:
+        linear-gradient(#000, #000),
+        linear-gradient(#000, #000);
+    -webkit-mask-composite: xor;
+    -webkit-mask-clip: text, padding-box;
+}
+
+.card:hover span {
+    --_i: 0%;
+}
+
+/* Footer CSS */
+footer {
+    bottom: 0;
+}
+
+a {
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 2px solid var(--white);
+    transition: border-bottom 0.5s ease-in-out;
+}
+
+a:hover {
+    border-bottom: 2px solid transparent;
+}
+
+/* Media CSS */
+@media screen and (max-width: 768px) {
+    .card {
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .card {
+        flex-basis: 100%;
+    }
+}
+
+@supports not (-webkit-mask-clip: text) {
+    .card span {
+        -webkit-mask: none;
+        color: var(--white);
+    }
+}
